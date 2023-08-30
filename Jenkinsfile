@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script{
                     withSonarQubeEnv('SonarQube') {
-                        bat 'Maven sonar:sonar'
+                        bat 'maven sonar:sonar'
                     }
                 }
             }
