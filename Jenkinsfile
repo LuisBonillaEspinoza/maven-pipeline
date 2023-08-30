@@ -30,5 +30,18 @@ pipeline {
                 }
             }
         }
+        stage('Publish Coverage Report') {
+            steps {
+                jacoco(execPattern: 'target/**/*.exec')
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target/site/jacoco',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage Report'
+                ])
+            }
+        }
     }
 }
