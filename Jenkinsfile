@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        stage("Sonatqube Analysis"){
+        stage("Sonarqube Coverage"){
             steps {
                 script{
                     withSonarQubeEnv('SonarQube') {
