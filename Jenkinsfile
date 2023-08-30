@@ -30,17 +30,14 @@ pipeline {
                 }
             }
         }
-        stage('Publish Coverage Report') {
+        stage("Sonatqube Analysis"){
             steps {
-                jacoco(execPattern: 'target/**/*.exec')
-                publishHTML(target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'target/site/jacoco',
-                    reportFiles: 'index.html',
-                    reportName: 'Code Coverage Report'
-                ])
+                script{
+                    def scannerHome = tool 'SonarQube'
+                    withSonarQubeEnv('SonarQube') {
+                        bat "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
             }
         }
     }
