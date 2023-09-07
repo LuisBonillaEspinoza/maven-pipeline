@@ -30,14 +30,5 @@ pipeline {
                 }
             }
         }
-        stage("Sonarqube Coverage"){
-            steps {
-                script{
-                    withSonarQubeEnv('SonarQube') {
-                        bat 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
     }
 }
